@@ -9,10 +9,6 @@ export function initializeSocket(server) {
     });
 
     io.on('connection', (socket) => {
-        console.log(`a user ${socket.id} connected`);
-
-        socket.on('disconnect', () => console.log(`user ${socket.id} disconnected`));
-
-        socket.on("join", (username) => handleJoinRoom(socket, username));
+        socket.on("join", (username) => handleJoinRoom(socket, username, io));
     });
 }

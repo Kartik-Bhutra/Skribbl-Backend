@@ -2,7 +2,7 @@ import roomIDGenerator from "../generateRoomID.js";
 
 const rooms = [];
 
-export function handleJoinRoom(socket, username) {
+export function handleJoinRoom(socket, username, io) {
     let roomID = roomIDGenerator();
     if (rooms.length === 0) {
         rooms.push({
@@ -12,7 +12,7 @@ export function handleJoinRoom(socket, username) {
     } else {
         let flag = false;
         for (let i = 0; i < rooms.length; i++) {
-            if (rooms[i].users.length < 2) {
+            if (rooms[i].users.length < 8) {
                 rooms[i].users.push(username);
                 roomID = rooms[i].roomID;
                 flag = true;
@@ -27,4 +27,5 @@ export function handleJoinRoom(socket, username) {
         }
     }
     socket.join(roomID);
+    io.to(roomID).emit("joined", roomID);
 }

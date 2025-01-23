@@ -11,6 +11,5 @@ app.use(cors({
 const server = createServer(app);
 initializeSocket(server);
 
-server.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+const port = process.env.PORT || 4000;
+server.listen(port, () => console.log(`server is running on port ${port}`));
