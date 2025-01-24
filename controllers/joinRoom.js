@@ -13,7 +13,7 @@ export default function (socket, username, io, rooms) {
   } else {
     let flag = false;
     for (let i = 0; i < rooms.length; i++) {
-      if (rooms[i].players.length < 8) {
+      if (rooms[i].players.length < 7) {
         rooms[i].players.push({
           name: username,
           socketID: socket.id,
@@ -36,5 +36,6 @@ export default function (socket, username, io, rooms) {
     }
   }
   socket.join(roomID);
-  io.to(roomID).emit("joined", roomID);
+  const players = rooms.find((room) => room.roomID === roomID).players;
+  io.to(roomID).emit("joined", players);
 }

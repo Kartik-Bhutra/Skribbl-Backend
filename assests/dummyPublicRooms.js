@@ -1,10 +1,13 @@
 export const publicRooms = [
   {
-    roomID: "a1bc2f",
+    roomID: "chomu1",
     players: [
-      { name: "kartik", socketID: "1a2b3c", score: 150 },
-      { name: "vivek", socketID: "1acd2b", score: 200 },
-      { name: "mithil", socketID: "1a2bfc", score: 250 },
+      { name: "kartik", socketID: "1a2b9c", score: 150 },
+      { name: "vivek", socketID: "1acd7b", score: 200 },
+      { name: "mithil", socketID: "1a25bfc", score: 250 },
+      { name: "pasari", socketID: "1avb9c", score: 150 },
+      { name: "naman", socketID: "facd7b", score: 200 },
+      { name: "varun", socketID: "za25bfc", score: 250 },
     ],
   },
   {
