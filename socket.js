@@ -14,6 +14,6 @@ export function initializeSocket(server) {
     io.on('connection', (socket) => {
         socket.on("disconnect", () => handleDisconnect(socket.id, rooms, io));
         socket.on("join", (username) => handleJoinRoom(socket, username, io, rooms));
-        socket.on("send_message", (message) => handleMessage(socket, message, rooms, io));
+        socket.on("send_message", (message) => handleMessage(message, io));
     });
 }
