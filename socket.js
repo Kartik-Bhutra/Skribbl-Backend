@@ -3,6 +3,7 @@ import { publicRooms as rooms } from "./assests/dummyPublicRooms.js";
 import handleJoinRoom from "./controllers/joinRoom.js";
 import handleDisconnect from "./controllers/disconnect.js";
 import handleMessage from "./controllers/sendMessage.js";
+import handleDrawing from "./controllers/drawing.js";
 
 export function initializeSocket(server) {
     const io = new Server(server, {
@@ -15,5 +16,6 @@ export function initializeSocket(server) {
         socket.on("disconnect", () => handleDisconnect(socket.id, rooms, io));
         socket.on("join", (username) => handleJoinRoom(socket, username, io, rooms));
         socket.on("send_message", (message) => handleMessage(message, io));
+        socket.on("send_drawing", (coordinates, roomID) => handleDrawing(socket, coordinates, roomID));
     });
 }

@@ -1,5 +1,15 @@
 export const publicRooms = [
   {
+    roomID: "b2cd3e",
+    players: [
+      { name: "Alice", socketID: "4a5b6c", score: 120 },
+      { name: "Bob", socketID: "4acd5b", score: 180 },
+      { name: "Charlie", socketID: "4a5bfc", score: 210 },
+      { name: "David", socketID: "4a6b7c", score: 150 },
+      { name: "Eve", socketID: "4acd6b", score: 190 },
+    ],
+  },
+  {
     roomID: "chomu1",
     players: [
       { name: "kartik", socketID: "1a2b9c", score: 150 },
@@ -8,16 +18,6 @@ export const publicRooms = [
       { name: "pasari", socketID: "1avb9c", score: 150 },
       { name: "naman", socketID: "facd7b", score: 200 },
       { name: "varun", socketID: "za25bfc", score: 250 },
-    ],
-  },
-  {
-    roomID: "b2cd3e",
-    players: [
-      { name: "Alice", socketID: "4a5b6c", score: 120 },
-      { name: "Bob", socketID: "4acd5b", score: 180 },
-      { name: "Charlie", socketID: "4a5bfc", score: 210 },
-      { name: "David", socketID: "4a6b7c", score: 150 },
-      { name: "Eve", socketID: "4acd6b", score: 190 },
     ],
   },
   {
