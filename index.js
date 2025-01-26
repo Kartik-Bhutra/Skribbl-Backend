@@ -1,7 +1,7 @@
 import express from "express";
 import { createServer } from "http";
 import cors from "cors";
-import { initializeSocket } from "./socket.js";
+import initializeSocket from "./socket.js";
 
 const app = express();
 app.use(cors({

@@ -1,42 +1,43 @@
 import roomIDGenerator from "../generators/generateRoomID.js";
 export default function (socket, username, io, rooms) {
   let roomID = roomIDGenerator();
+  while (rooms.has(roomID)) {
+    roomID = roomIDGenerator();
+  }
   let players = [];
-  if (rooms.length === 0) {
-    rooms.push({
-      roomID,
-      players: [{
+  if (rooms.size === 0) {
+    players = [
+      {
         name: username,
         socketID: socket.id,
-        score: 0
-      }]
-    });
-    players = rooms[0].players;
+        score: 0,
+      },
+    ];
+    rooms.set(roomID, players);
   } else {
-    let flag = false;
-    for (let i = 0; i < rooms.length; i++) {
-      if (rooms[i].players.length < 7) {
-        rooms[i].players.push({
+    let roomFound = false;
+    for (const [existingRoomID, roomData] of rooms) {
+      if (roomData.length < 7) {
+        roomData.push({
           name: username,
           socketID: socket.id,
-          score: 0
+          score: 0,
         });
-        players = rooms[i].players;
-        roomID = rooms[i].roomID;
-        flag = true;
+        players = roomData;
+        roomID = existingRoomID;
+        roomFound = true;
         break;
       }
     }
-    if (!flag) {
-      rooms.push({
-        roomID,
-        players: [{
+    if (!roomFound) {
+      players = [
+        {
           name: username,
           socketID: socket.id,
-          score: 0
-        }]
-      });
-      players = rooms[rooms.length - 1].players;
+          score: 0,
+        },
+      ];
+      rooms.set(roomID, players);
     }
   }
   socket.join(roomID);
