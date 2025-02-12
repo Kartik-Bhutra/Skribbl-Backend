@@ -1,4 +1,4 @@
-export default function (roomID, socket, rooms) {
+export default function (roomID, socket, rooms, roomType) {
   const room = rooms.get(roomID);
   const updatedPlayers = room.filter((player) => player.socketID !== socket.id);
   if (updatedPlayers.length > 0) {
@@ -7,4 +7,4 @@ export default function (roomID, socket, rooms) {
   } else {
     rooms.delete(roomID);
   }
-}
+};
