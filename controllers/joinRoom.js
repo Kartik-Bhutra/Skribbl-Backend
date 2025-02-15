@@ -9,12 +9,13 @@ export default function (socket, username, io, rooms, roomID) {
     const updatedPlayers = room.players;
     updatedPlayers.push({
       name: username,
-      score: 0
+      score: 0,
+      id: socket.id
     });
     rooms.set(roomID, { ...room, players: updatedPlayers });
     socket.join(roomID);
-    io.to(roomID).emit("joined", updatedPlayers);
-    socket.broadcast.to(roomID).emit("new_player", username,socket.id);
+    io.to(socket.id).emit("joined", updatedPlayers);
+    socket.broadcast.to(roomID).emit("new_player", username, socket.id);
   }
   else {
     io.to(socket.id).emit("incorrect_id");

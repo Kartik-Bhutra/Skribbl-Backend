@@ -13,6 +13,7 @@ export default function (socket, rooms, username) {
             {
                 name: username,
                 score: 0,
+                id: socket.id
             },
         ],
         settings: {
