@@ -1,8 +1,8 @@
 import nameGenerator from "../generators/generateName.js";
 
-export default async function (socket, username, io, rooms, roomID) {
+export default function (socket, username, io, rooms, roomID) {
   if (!username) {
-    username = await nameGenerator();
+    username = nameGenerator();
   }
   const room = rooms.get(roomID);
   if (room) {
@@ -14,6 +14,7 @@ export default async function (socket, username, io, rooms, roomID) {
     rooms.set(roomID, { ...room, players: updatedPlayers });
     socket.join(roomID);
     io.to(roomID).emit("joined", updatedPlayers);
+    socket.broadcast.to(roomID).emit("new_player", username,socket.id);
   }
   else {
     io.to(socket.id).emit("incorrect_id");

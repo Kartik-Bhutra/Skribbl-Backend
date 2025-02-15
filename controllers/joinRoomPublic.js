@@ -7,7 +7,7 @@ export default async function (socket, username, io, rooms) {
     roomID = roomIDGenerator();
   }
   if (!username) {
-    username = await nameGenerator();
+    username = nameGenerator();
   }
   let players = [];
   if (rooms.size === 0) {

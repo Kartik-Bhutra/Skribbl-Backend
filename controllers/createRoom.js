@@ -1,12 +1,12 @@
 import roomIDGenerator from "../generators/generateRoomID.js";
 import nameGenerator from "../generators/generateName.js";
-export default async function (socket, rooms, username) {
+export default function (socket, rooms, username) {
     let roomID = roomIDGenerator();
     while (rooms.has(roomID)) {
         roomID = roomIDGenerator();
     }
     if (!username) {
-        username = await nameGenerator();
+        username = nameGenerator();
     }
     let data = {
         players: [

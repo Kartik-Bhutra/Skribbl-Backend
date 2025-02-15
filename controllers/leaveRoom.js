@@ -3,7 +3,7 @@ export default function (roomID, socket, rooms) {
   const updatedPlayers = room.players.filter((player) => player.socketID !== socket.id);
   if (updatedPlayers.length > 0) {
     rooms.set(roomID, { ...room, players: updatedPlayers });
-    socket.broadcast.to(roomID).emit("players", updatedPlayers);
+    socket.broadcast.to(roomID).emit("leave", socket.id);
   } else {
     rooms.delete(roomID);
   }
