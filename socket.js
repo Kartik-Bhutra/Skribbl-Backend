@@ -17,7 +17,7 @@ export default function (server) {
         }
     });
     io.on('connection', (socket) => {
-        socket.on("create_room", (name) => handleCreateRoom(socket, privateRooms));
+        socket.on("create_room", (name) => handleCreateRoom(socket, privateRooms, name, io));
         socket.on("leave", (roomID) => handleRoomLeave(roomID, socket, privateRooms))
         socket.on("join_room", (username, roomID) => handleJoinRoom(socket, username, io, privateRooms, roomID));
         socket.on("send_message", (message) => handleMessage(message, io));

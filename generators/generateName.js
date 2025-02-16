@@ -1,4 +1,4 @@
-export default function () {
+export default function (i) {
   const names = [
     "Alice",
     "Bob",
@@ -8,5 +8,5 @@ export default function () {
     "Frank",
     "Grace"
   ];
-  return names[Math.floor(Math.random() * names.length)];
+  return names[i];
 }
