@@ -7,6 +7,8 @@ import handleUndo from "./controllers/undo.js";
 import handleClear from "./controllers/clear.js";
 import handleFill from "./controllers/fill.js";
 import handlePath from "./controllers/path.js";
+import handlePlayerCount from "./controllers/playerCount.js";
+import handleGameSettings from "./controllers/gameSettings.js";
 
 const privateRooms = new Map();
 
@@ -25,5 +27,7 @@ export default function (server) {
         socket.on("undo", (roomID) => handleUndo(socket, roomID));
         socket.on("path", (pathIdx, pathData, roomID) => handlePath(socket, roomID, pathIdx, pathData));
         socket.on("clear", (roomID) => handleClear(socket, roomID));
+        socket.on("players", (players, roomID) => handlePlayerCount(players, privateRooms, roomID, socket));
+        socket.on("settings",(gameSettings, roomID) => handleGameSettings(gameSettings, privateRooms, roomID, socket));
     });
 }

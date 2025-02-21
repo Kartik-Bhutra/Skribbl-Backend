@@ -1,5 +1,5 @@
-export default function ( { roomID, name, text }, io) {
-  io.to(roomID).emit("recive_message", {
+export default function ({ roomID, name, text }, io) {
+  io.to(roomID).emit("recieve", {
     name,
     text,
   });
