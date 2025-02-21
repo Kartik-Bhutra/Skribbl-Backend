@@ -17,8 +17,8 @@ export default function (socket, rooms, username, io) {
             },
         ],
         settings: {
-            playerCount: 5,
-            drawTime: 60,
+            playerCount: 7,
+            drawTime: 80,
             roundCount: 3,
         },
     }

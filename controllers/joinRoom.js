@@ -15,8 +15,10 @@ export default function (socket, username, io, rooms, roomID) {
       });
       rooms.set(roomID, { ...room, players: updatedPlayers });
       socket.join(roomID);
-      io.to(socket.id).emit("joined", updatedPlayers, roomID);
       socket.broadcast.to(roomID).emit("players", updatedPlayers);
+      const { playerCount, ...settings } = room.settings;
+      io.to(socket.id).emit("joined", updatedPlayers, roomID, playerCount, settings);
+      socket.broadcast.to(roomID).emit("recieve", "", `${username} has joined the room`);
     }
     else {
       io.to(socket.id).emit("full");
