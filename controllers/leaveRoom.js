@@ -9,8 +9,10 @@ export default function (roomID, socket, rooms, io) {
     socket.broadcast.to(roomID).emit("recieve", "", `${leftPlayer.name} has left the room`);
     if (admin === leftPlayer.id) {
       io.to(roomID).emit("recieve", "", `Room Admin is ${updatedPlayers[0].name}`);
+      io.to(updatedPlayers[0].id).emit("admin");
     }
   } else {
     rooms.delete(roomID);
   }
+  socket.leave(roomID);
 };
